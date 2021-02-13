@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New APP</title>
+    {% load static %}
+    <link type="text/css" rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+</head>
+<body>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-danger" role="alert">
+              {{ message }}!!
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <h2>Usuarios:</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">nombre</th>
+          <th scope="col">Apellido</th>
+          <th scope="col">Email</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for usuario in usuarios %}
+        <tr>
+          <th scope="row">{{ usuario.id }}</th>
+          <td>{{ usuario.name}}</td>
+          <td>{{ usuario.last_name }}</td>
+          <td>{{ usuario.email }}</td>
+          <td><a href="/usuarios/delete/{{ usuario.id }}" class="btn btn-danger">X</a></td>
+        </tr>
+      {% endfor %}
+
+      </tbody>
+    </table>
+
+    <script src="{% static 'bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>
